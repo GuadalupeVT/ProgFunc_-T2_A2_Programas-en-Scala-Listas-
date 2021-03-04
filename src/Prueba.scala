@@ -4,9 +4,9 @@ import scala.io.StdIn._
 object Prueba {
 
   //Metodo para leer la lista de palabras
-  def crearLista(): ListBuffer[String] ={
+  def crearLista(p:Int): ListBuffer[String] ={
     var listaPalabras = new ListBuffer[String]()
-    println("¿Cuantas palabras deseas ingresar a la lista?")
+    println("¿Cuantas palabras deseas ingresar a la lista "+p+"?")
     val n=readInt()
     for(i <- 0 until n){
       println("Ingresa palabra "+(i+1)+": ")
@@ -26,10 +26,23 @@ object Prueba {
    lista
   }
 
+  //Metodod para ingresar palabras
+  def pedirPalabra(): String ={
+    println("Ingresa la palabra: ")
+    val palabra=readLine()
+    palabra
+  }
+
   //1. Escriba un programa que permita crear una lista de palabras y que, a continuación, pida una
   //palabra y diga cuántas veces aparece esa palabra en la lista.
-  def numRepDePalabrasEnLista(): Unit ={
-
+  def numRepDePalabrasEnLista(palabra:String, lista: => ListBuffer[String]): Unit ={
+    var sum=0
+    for (elemento<- lista){
+      if(elemento == palabra){
+        sum+=1
+      }
+    }
+    println("La palabra "+palabra+" aparece en la lista "+sum+" veces")
   }
 
   //2. Escriba un programa que permita crear una lista de palabras y que, a continuación, pida dos
@@ -78,10 +91,10 @@ object Prueba {
   //lista.
 
   def main(args: Array[String]): Unit = {
-    var listaPalabras=crearLista()
+    var listaPalabras1=crearLista(1)
+    var listaPalabras2=crearLista(2)
     var listaNumeros=crearListaNum()
-    println(listaPalabras)
-    println(listaNumeros)
+
     //Impresion de menu
     var menu=0
     while (menu<10 && menu>=0){
@@ -108,6 +121,13 @@ object Prueba {
       println ("10. Salir")
 
       menu=readInt()
+
+      //Evaluacion
+
+      //Repeticion de una palabra en la lista1
+      if(menu==0){
+        numRepDePalabrasEnLista(pedirPalabra(),listaPalabras1)
+      }
 
     }
   }
