@@ -67,7 +67,35 @@ object Prueba {
   //lista.
 
   def main(args: Array[String]): Unit = {
-    crearLista()
+    var lista1=crearLista()
+    //Impresion de menu
+    var menu=0
+    while (menu<10 && menu>=0){
+      println("------------- MENU --------------")
+      println("Selecciona una opción....")
+      println("0. Buscar una palabra en la lista y contar repeticiones")
+      println("1. Sustituir una palabra por otra en la lista")
+      println("2. Eliminar una palabra de la lista")
+      println("3. Eliminar de la primera lista las palabras de la segunda")
+      println("4. Crear listas de repeticion: ")
+      println("  * Lista de palabras que aparecen en las dos listas")
+      println("  * Lista de palabras que aparecen en la primera lista, pero no en la segunda")
+      println("  * Lista de palabras que aparecen en la segunda lista, pero no en la primera")
+      println("  * Lista de palabras que aparecen en ambas listas")
+      println("5. Buscar todas la palabras palindromas en la lista")
+//Lista de numeros
+      println("6. Lista de la suma acumulada de la lista")
+      println("7. Obtener todos los números capicúas de una lista")
+      println("8. Con la lista de numeros obtener: ")
+      println("  * Lista con todos los que sean primos.")
+      println("  * Sumatoria y promedio de los valores de la lista")
+      println("  * Lista con el factorial de cada uno de esos números")
+      println("9. Empaquetar la lista (numeros y palabras) ")
+      println ("10. Salir")
+
+      menu=readInt()
+
+    }
   }
 
 }
