@@ -47,7 +47,7 @@ object Prueba {
 
   //2. Escriba un programa que permita crear una lista de palabras y que, a continuación, pida dos
   //palabras y sustituya la primera por la segunda en la lista.
-  def sustitucionEnLaLista(palabra1:String, palabra2:String,lista: => ListBuffer[String]): Unit ={
+  def sustitucionEnLaLista(palabra1:String, palabra2:String,lista: => ListBuffer[String]): ListBuffer[String] ={
     var sum=0
     print("La lista original es: ")
     print(lista)
@@ -63,12 +63,13 @@ object Prueba {
     print("La lista modificada es: ")
     print(lista)
     println()
+    lista
   }
 
 
   //3. Escriba un programa que permita crear una lista de palabras y que, a continuación, pida una
   //palabra y elimine esa palabra de la lista.
-  def eliminarPalabra(palabra:String,lista: => ListBuffer[String]): Unit ={
+  def eliminarPalabra(palabra:String,lista: => ListBuffer[String]): ListBuffer[String] ={
     var sum=0
     print("La lista original es: ")
     print(lista)
@@ -85,10 +86,19 @@ object Prueba {
     print("La lista modificada es: ")
     print(lista)
     println()
+    lista
   }
 
   //4. Escriba un programa que permita crear dos listas de palabras y que, a continuación, elimine de la
   //primera lista los nombres de la segunda lista
+  def eliminarPalabrasEnLaPrimeraDeLaSegunda(lista1: => ListBuffer[String], lista2: => ListBuffer[String]): ListBuffer[String] ={
+    var list=lista1
+    for(i <- 0 until lista2.size){
+      list=eliminarPalabra(lista2(i),lista1)
+      println("...........................")
+    }
+    list
+  }
 
 
   //5. Escriba un programa que permita crear dos listas de palabras y que, a continuación, escriba las
@@ -165,16 +175,18 @@ object Prueba {
 
       //sustituir la primera por la segunda en la lista
       if(menu==1){
-        sustitucionEnLaLista(pedirPalabra(),pedirPalabra(),listaPalabras1)
+        listaPalabras1=sustitucionEnLaLista(pedirPalabra(),pedirPalabra(),listaPalabras1)
       }
 
       //Eliminar una palabra de la lista
       if(menu==2){
-        eliminarPalabra(pedirPalabra(),listaPalabras1)
+        listaPalabras1=eliminarPalabra(pedirPalabra(),listaPalabras1)
       }
 
       //eliminar de la primera lista los nombres de la segunda lista
-
+      if(menu==3){
+        listaPalabras1=eliminarPalabrasEnLaPrimeraDeLaSegunda(listaPalabras1,listaPalabras2)
+      }
     }
   }
 
