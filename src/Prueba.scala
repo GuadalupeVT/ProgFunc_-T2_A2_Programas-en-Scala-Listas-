@@ -15,6 +15,17 @@ object Prueba {
     listaPalabras
   }
 
+  //Metodo para crear la lista de numeros
+  def crearListaNum(): ListBuffer[Int]={
+    var lista = new ListBuffer[Int]()
+    println("¿Cuantas numeros deseas en la lista?")
+    val n=readInt()
+    for(i <- 0 until n){
+      lista+=(math.random * (100-10) + 20).toInt
+    }
+   lista
+  }
+
   //1. Escriba un programa que permita crear una lista de palabras y que, a continuación, pida una
   //palabra y diga cuántas veces aparece esa palabra en la lista.
   def numRepDePalabrasEnLista(): Unit ={
@@ -67,7 +78,10 @@ object Prueba {
   //lista.
 
   def main(args: Array[String]): Unit = {
-    var lista1=crearLista()
+    var listaPalabras=crearLista()
+    var listaNumeros=crearListaNum()
+    println(listaPalabras)
+    println(listaNumeros)
     //Impresion de menu
     var menu=0
     while (menu<10 && menu>=0){
