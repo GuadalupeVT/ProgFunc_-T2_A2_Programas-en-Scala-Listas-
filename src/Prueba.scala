@@ -47,6 +47,23 @@ object Prueba {
 
   //2. Escriba un programa que permita crear una lista de palabras y que, a continuación, pida dos
   //palabras y sustituya la primera por la segunda en la lista.
+  def sustitucionEnLaLista(palabra1:String, palabra2:String,lista: => ListBuffer[String]): Unit ={
+    var sum=0
+    print("La lista original es: ")
+    print(lista)
+    for(i <- 0 until lista.size){
+      if(lista(i)== palabra1){
+        sum+=1
+        lista.remove(i)
+        lista.insert(i,palabra2)
+      }
+    }
+    println()
+    println("La palabra "+palabra1+" aparecio en la lista "+sum+" veces")
+    print("La lista modificada es: ")
+    print(lista)
+    println()
+  }
 
 
   //3. Escriba un programa que permita crear una lista de palabras y que, a continuación, pida una
@@ -127,6 +144,11 @@ object Prueba {
       //Repeticion de una palabra en la lista1
       if(menu==0){
         numRepDePalabrasEnLista(pedirPalabra(),listaPalabras1)
+      }
+
+      //sustituir la primera por la segunda en la lista
+      if(menu==1){
+        sustitucionEnLaLista(pedirPalabra(),pedirPalabra(),listaPalabras1)
       }
 
     }
