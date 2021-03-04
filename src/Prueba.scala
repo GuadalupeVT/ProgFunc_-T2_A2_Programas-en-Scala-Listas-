@@ -7,9 +7,11 @@ object Prueba {
   def crearLista(): ListBuffer[String] ={
     var listaPalabras = new ListBuffer[String]()
     println("¿Cuantas palabras deseas ingresar a la lista?")
-    val n=readLine()
-    for()
-
+    val n=readInt()
+    for(i <- 0 until n){
+      println("Ingresa palabra "+(i+1)+": ")
+      listaPalabras+=readLine()
+    }
     listaPalabras
   }
 
@@ -65,7 +67,7 @@ object Prueba {
   //lista.
 
   def main(args: Array[String]): Unit = {
-
+    crearLista()
   }
 
 }
