@@ -68,7 +68,24 @@ object Prueba {
 
   //3. Escriba un programa que permita crear una lista de palabras y que, a continuación, pida una
   //palabra y elimine esa palabra de la lista.
-
+  def eliminarPalabra(palabra:String,lista: => ListBuffer[String]): Unit ={
+    var sum=0
+    print("La lista original es: ")
+    print(lista)
+    for(i <- 0 until lista.size){
+      if(lista(i)== palabra){
+        sum+=1
+      }
+    }
+    for(e <- 0 until sum){
+      lista-=palabra
+    }
+    println()
+    println("La palabra "+palabra+" aparecio en la lista "+sum+" veces")
+    print("La lista modificada es: ")
+    print(lista)
+    println()
+  }
 
   //4. Escriba un programa que permita crear dos listas de palabras y que, a continuación, elimine de la
   //primera lista los nombres de la segunda lista
@@ -150,6 +167,13 @@ object Prueba {
       if(menu==1){
         sustitucionEnLaLista(pedirPalabra(),pedirPalabra(),listaPalabras1)
       }
+
+      //Eliminar una palabra de la lista
+      if(menu==2){
+        eliminarPalabra(pedirPalabra(),listaPalabras1)
+      }
+
+      //eliminar de la primera lista los nombres de la segunda lista
 
     }
   }
