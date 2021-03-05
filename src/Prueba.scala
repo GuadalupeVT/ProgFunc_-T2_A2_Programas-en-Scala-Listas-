@@ -132,6 +132,19 @@ object Prueba {
 
   //7. Escribe una función llamada “obtenerPalindromas" que busque todas las palabras palíndromas de
   //una lista. Ejemplo de palabras inversas: radar, oro, rajar, rallar, salas, somos, etc...
+  def obtenerPalindromas(lista: => ListBuffer[String]):ListBuffer[String]={
+    var palindromas = new ListBuffer[String]()
+    for (i <- 0 until lista.size){
+      var palabraInversa=""
+      for(x <- lista(i).length -1 to 0 by -1){
+        palabraInversa=palabraInversa+lista(i).charAt(x)
+      }
+      if(palabraInversa==lista(i)){
+        palindromas+=lista(i)
+      }
+    }
+    palindromas
+  }
 
 
   //8. Escribe una función llamada “obtenerCapicuas" que busque todos los números capicúas de una
@@ -242,7 +255,13 @@ object Prueba {
         println(unionDeListasSinRep(listaPalabras1,listaPalabras2))
       }
 
-
+      //Obtener palindromas
+      if(menu==5){
+        println("La lista original es: ")
+        println(listaPalabras1)
+        println("Lista de palabras palindromas encontradas: ")
+        println(obtenerPalindromas(listaPalabras1))
+      }
 
       //Lista de suma acumulada
       if(menu==6){
