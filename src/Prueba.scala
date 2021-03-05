@@ -170,7 +170,7 @@ object Prueba {
   //a) Devuelva una lista con todos los que sean primos.
   //b) Devuelva la sumatoria y el promedio de los valores.
   //c) Devuelva una lista con el factorial de cada uno de esos números.
-  def listasPrimosPromedioFactorial(lista: => ListBuffer[Int]): ListBuffer[ListBuffer[_]]={
+  def listasPrimosPromedioFactorial(lista: => ListBuffer[Int]): ListBuffer[ListBuffer[_]]= {
     var list = new ListBuffer[ListBuffer[_]]()
 
     var primos = new ListBuffer[Int]()
@@ -178,48 +178,67 @@ object Prueba {
     var factorial = new ListBuffer[Long]()
 
     //Evaluar primo
-    for(a <- 0 until lista.size) {
-      var divisores=0
-     for(z<- 1 until lista(a)+1){
-       if(lista(a)%z==0)
-         divisores+=1
-     }
-      if(divisores==2)
-        primos+=lista(a)
+    for (a <- 0 until lista.size) {
+      var divisores = 0
+      for (z <- 1 until lista(a) + 1) {
+        if (lista(a) % z == 0)
+          divisores += 1
+      }
+      if (divisores == 2)
+        primos += lista(a)
     }
 
 
     //Sumatoria y promedio
-    var sum=0
-    for(b <- 0 until lista.size){
-      sum=sum+lista(b)
+    var sum = 0
+    for (b <- 0 until lista.size) {
+      sum = sum + lista(b)
     }
-    sumatoria+=sum
-    sumatoria+=(sum/lista.size)
+    sumatoria += sum
+    sumatoria += (sum / lista.size)
 
     //Factorial
-    for(c <- 0 until lista.size){
-      var fact=1
-      for(x <- lista(c) to 1 by -1){
-        fact*=x
+    for (c <- 0 until lista.size) {
+      var fact = 1
+      for (x <- lista(c) to 1 by -1) {
+        fact *= x
       }
-      factorial+=fact
+      factorial += fact
     }
 
 
-    list+=primos
-    list+=sumatoria
-    list+=factorial
+    list += primos
+    list += sumatoria
+    list += factorial
 
     list
   }
 
-
-
-
   //10. . Escribir una función empaquetar para una lista, donde empaquetar significa indicar la repetición
   //de valores consecutivos mediante el par: (valor, cantidad de repeticiones). Agregar esto en otra
   //lista.
+  def listaEmpaquetada(lista: => ListBuffer[Int]): ListBuffer[ListBuffer[_]]= {
+    var list = new ListBuffer[ListBuffer[_]]()
+
+    for (i <- 0 until lista.size) {
+      if(lista(i)!=0){
+        var cont = new ListBuffer[Int]()
+        var sum=0
+        for(j <- 0 until lista.size){
+          if(lista(j)==lista(i)){
+            //lista(j)=0
+            sum+=1
+          }
+        }
+        //println(lista)
+        cont+=lista(i)
+        cont+=sum
+        list+=cont
+      }
+    }
+    list
+  }
+
 
   def main(args: Array[String]): Unit = {
     var listaPalabras1=crearLista(1)
@@ -356,9 +375,17 @@ object Prueba {
         println("Lista de factoriales: ")
         print(listaRes(2))
         println()
-
-
       }
+
+        //Empaquetar valores
+        if(menu==9){
+          println("La lista de numeros original es: ")
+          println(listaNumeros)
+          println("La lista empaquetada es: ")
+          println(listaEmpaquetada(listaNumeros))
+        }
+
+
 
 
     }
