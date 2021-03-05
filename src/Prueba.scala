@@ -21,7 +21,7 @@ object Prueba {
     println("¿Cuantas numeros deseas en la lista?")
     var n=readInt()
     for(i <- 0 until n){
-      lista+=(math.random * (100-10) + 20).toInt
+      lista+=(math.random * (10-1) +1).toInt
     }
    lista
   }
@@ -149,11 +149,72 @@ object Prueba {
 
   //8. Escribe una función llamada “obtenerCapicuas" que busque todos los números capicúas de una
   //lista.
+  def listaNumerosCapicuas(lista: => ListBuffer[Int]):ListBuffer[Int]={
+    var capicuas = new ListBuffer[Int]()
+
+    for(i <- 0 until lista.size){
+      var num=lista(i).toString
+      var numInverso=""
+      for(x <- num.length -1 to 0 by -1){
+        numInverso=numInverso+num.charAt(x)
+      }
+      if(numInverso==num){
+        capicuas+=lista(i)
+      }
+    }
+    capicuas
+  }
+
 
   //9. Dada una lista de números enteros, escribir una función que:
   //a) Devuelva una lista con todos los que sean primos.
   //b) Devuelva la sumatoria y el promedio de los valores.
   //c) Devuelva una lista con el factorial de cada uno de esos números.
+  def listasPrimosPromedioFactorial(lista: => ListBuffer[Int]): ListBuffer[ListBuffer[_]]={
+    var list = new ListBuffer[ListBuffer[_]]()
+
+    var primos = new ListBuffer[Int]()
+    var sumatoria = new ListBuffer[Int]()
+    var factorial = new ListBuffer[Long]()
+
+    //Evaluar primo
+    for(a <- 0 until lista.size) {
+      var divisores=0
+     for(z<- 1 until lista(a)+1){
+       if(lista(a)%z==0)
+         divisores+=1
+     }
+      if(divisores==2)
+        primos+=lista(a)
+    }
+
+
+    //Sumatoria y promedio
+    var sum=0
+    for(b <- 0 until lista.size){
+      sum=sum+lista(b)
+    }
+    sumatoria+=sum
+    sumatoria+=(sum/lista.size)
+
+    //Factorial
+    for(c <- 0 until lista.size){
+      var fact=1
+      for(x <- lista(c) to 1 by -1){
+        fact*=x
+      }
+      factorial+=fact
+    }
+
+
+    list+=primos
+    list+=sumatoria
+    list+=factorial
+
+    list
+  }
+
+
 
 
   //10. . Escribir una función empaquetar para una lista, donde empaquetar significa indicar la repetición
@@ -270,6 +331,35 @@ object Prueba {
         println("La suma acumulada: ")
         println(listaSumaAculumada(listaNumeros))
       }
+
+      //Obtener todos los números capicúas de una lista
+      if(menu==7){
+        println("La lista de numeros original es: ")
+        println(listaNumeros)
+        println("Los números capicúas: ")
+        println(listaNumerosCapicuas(listaNumeros))
+      }
+
+      //primos, sumatoria y factorial
+      if(menu==8){
+        println("La lista de numeros original es: ")
+        println(listaNumeros)
+        println("Los números primos: ")
+        val listaRes=listasPrimosPromedioFactorial(listaNumeros)
+        println(listaRes(0))
+        println("La sumatoria: ")
+        print(listaRes(1)(0))
+        println()
+        println("Promedio: ")
+        print(listaRes(1)(1))
+        println()
+        println("Lista de factoriales: ")
+        print(listaRes(2))
+        println()
+
+
+      }
+
 
     }
   }
